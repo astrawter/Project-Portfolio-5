@@ -1,65 +1,25 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './App.css';
-import Input from './components/input';
+//Navigation
+import Home from './components/pages/Home';
+import PokeList from './components/pages/PokeList';
+import Type from './components/pages/Type';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 class App extends Component {
-
-  constructor() {
-    super()
-    this.state = {
-      type: '',
-      name: '',
-      img: ''
-    }
-    this.getChamp = this.getChamp.bind(this);
+  render() {
+    return (
+      <Router>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/Home' component={Home} />
+          <Route exact path='/PokeList' component={PokeList} />
+          <Route exact path='/Type' component={Type} />
+        </Switch>
+      </Router>
+    )
   }
-
-
-handleChange = event => {
-  this.setState({type: event.target.value})
-  this.getChamp(this.state.type)
-};
-
-
-async getChamp(type) {
-  await fetch('https://pokeapi.co/api/v2/type/'+type+'/', {
-    cache: "no-cache",
-    credentials: "same-origin",
-    headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*"
-    }
-})
-  .then(response => {return response.json()})
-  .then(poke => {
-    let url = poke.pokemon[0].pokemon.url
-    let num = url.substring(34, url.lastIndexOf("/"))
-    let imgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+num+".png"
-    this.setState({
-      name: poke.pokemon[0].pokemon.name,
-      img: imgUrl
-    })
-  })
-.catch(error => console.log('Pokemon not found!', error))
 }
 
-
-  render (){
-    return(
-      <div className="App">
-        <Input
-          value = {this.state.type}
-          handleChange={this.handleChange}/>
-        <p style={styles.p}>{`${this.state.name}`}</p>
-        <img src={`${this.state.img}`} alt={`${this.state.name}`}/>
-    </div>)
-  };
-}
 
 export default App;
-
-let styles = {
-  p:{
-    textTransform: "capitalize"
-  }
-}
