@@ -3,11 +3,13 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Nav from '../Navigation'
+import Grid from '@material-ui/core/Grid';
 
 class Type extends Component {
 
   constructor(props) {
     super(props)
+    this.type= 0;
     this.state = {
       tList: []
     }
@@ -49,16 +51,17 @@ class Type extends Component {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Nav/>
       <Container maxWidth="xl" disableGutters="true">
         <Typography component="div" style={{ backgroundColor: '#cc0000', height: '100vh' }}>
-        type
+          <Grid container spacing={3}>
+        {/*Create Modal to show information*/}
         {this.state.tList.map((poke, index) => (
-          <div key={poke.id}>
+          <Grid key={poke.id} item xs={4}>
           <img src ={poke.img} alt={poke.name} />
-         <p> {poke.name}</p>
-        </div>
+         <p>{poke.name}</p>
+      </Grid>
     ))}
+  </Grid>
         </Typography>
       </Container>
     </React.Fragment>

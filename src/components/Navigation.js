@@ -22,7 +22,7 @@ export default function ButtonAppBar() {
           <Grid container spacing={1}>
             <Grid item="item" xl={2}>
               <Typography variant="h6">
-                <NavLink to="/Home">Home</NavLink>
+                <NavLink to="/">Home</NavLink>
               </Typography>
             </Grid>
             <Grid item="item" xl={2}>

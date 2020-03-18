@@ -3,6 +3,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Nav from '../Navigation'
+import Grid from '@material-ui/core/Grid';
 
 class PokeList extends Component {
 
@@ -15,7 +16,8 @@ class PokeList extends Component {
   }
 
   componentDidMount(){
-    for (let i = 1; i < 6; i++) {
+    let rand = Math.floor((Math.random() * 150)+10);
+    for (let i = rand-9; i < rand; i++) {
     this.getList(i)
   }
 }
@@ -49,13 +51,15 @@ class PokeList extends Component {
       <Nav/>
       <Container maxWidth="xl" disableGutters="true">
         <Typography component="div" style={{ backgroundColor: '#cc0000', height: '100vh' }}>
-        PokeList
+        <Grid container spacing={3}>
         {this.state.pList.map((poke, index) => (
-          <div>
+        <Grid item xs={4}>
+          {/*Create Modal to show information*/}
           <img src ={poke.img} alt={poke.name} />
-        <p>{poke.id} {poke.name}</p>
-        </div>
+          <p id={poke.id}>{poke.name}</p>
+        </Grid>
     ))}
+          </Grid>
         </Typography>
       </Container>
     </React.Fragment>
