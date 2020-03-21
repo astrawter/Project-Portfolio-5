@@ -21,17 +21,17 @@ export default function ButtonAppBar() {
         <Toolbar>
           <Grid container spacing={1}>
             <Grid item="item" xl={2}>
-              <Typography variant="h6">
+              <Typography variant="h6" style={{ backgroundColor: '#ee1515', padding: '17px'}} >
                 <NavLink to="/">Home</NavLink>
               </Typography>
             </Grid>
             <Grid item="item" xl={2}>
-              <Typography variant="h6">
+              <Typography variant="h6" style={{ backgroundColor: '#ee1515', padding: '17px'}} >
                 <NavLink to="/PokeList">PokeList</NavLink>
               </Typography>
             </Grid>
-            <Grid item="item" xl={2}>
-              <Typography variant="h6">
+            <Grid item="item" xl={2} style={{ backgroundColor: '#222224', padding: '17px'}}>
+              <Typography variant="h6"  >
                 <NavLink to="/Type">By Type</NavLink>
               </Typography>
             </Grid>
