@@ -46,9 +46,6 @@ const theme = createMuiTheme({
     },
     MuiSelect: {
       filled: {
-        backgroundColor: "#f0f0f0"
-      },
-      filled: {
         backgroundColor: "#f0f0f0",
         "&:focus": {
           backgroundColor: "#f0f0f0",
