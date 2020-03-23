@@ -32,8 +32,17 @@ class Type extends Component {
         <CssBaseline />
         <Nav />
         <Grid container>
-          <Grid item md={4} xs={12} style={{ textAlign: "center" }}>
-            <Typography variant="h2" color="primary">
+          <Grid
+            item
+            md={4}
+            xs={12}
+            style={{ textAlign: "center", marginTop: "15%" }}
+          >
+            <Typography
+              variant="h2"
+              color="primary"
+              style={{ textAlign: "center", marginBottom: "5%" }}
+            >
               Find By Type
             </Typography>
             <Input handleChange={this.handleChange} />
