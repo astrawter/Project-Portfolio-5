@@ -26,9 +26,7 @@ class Type extends Component {
 
   render() {
     return (
-      <Typography
-        style={{ background: "#222224", height: "100VH", overflow: "scroll" }}
-      >
+      <Typography style={{ overflow: "scroll" }}>
         <CssBaseline />
         <Nav />
         <Grid container>
@@ -40,7 +38,6 @@ class Type extends Component {
           >
             <Typography
               variant="h2"
-              color="primary"
               style={{ textAlign: "center", marginBottom: "5%" }}
             >
               Find By Type

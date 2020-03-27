@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&family=Nova+Square&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&family=Nova+Square&display=swap");
 
 .App {
   text-align: center;
@@ -37,4 +37,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+a.active {
+  border-bottom: 2px solid #f0f0f0;
 }
