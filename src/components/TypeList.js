@@ -13,6 +13,11 @@ class TypeList extends Component {
     this.getTypeList = this.getTypeList.bind(this);
   }
 
+  handleClick = event => {
+    event.preventDefault();
+    console.log(event.target);
+  };
+
   componentDidMount() {
     this.getTypeList(this.props.type);
   }
@@ -73,6 +78,7 @@ class TypeList extends Component {
                 img={poke.img}
                 id={poke.id}
                 text="primary"
+                handleClick={this.handleClick}
               />
             </Grid>
           ))}

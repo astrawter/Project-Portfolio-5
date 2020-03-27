@@ -15,3 +15,26 @@ export default function SimpleContainer() {
     </React.Fragment>
   );
 }
+
+// getList(num) {
+//   fetch("https://pokeapi.co/api/v2/pokemon/" + num + "/", {
+//     headers: {
+//       "Content-Type": "application/json",
+//       "Access-Control-Allow-Origin": "*"
+//     }
+//   })
+//     .then(response => {
+//       return response.json();
+//     })
+//     .then(poke => {
+//       let pList = [...this.state.pList];
+//       //add the id, name, and img to the list as an object
+//       pList.push({
+//         id: poke.id,
+//         name: poke.name,
+//         img: poke.sprites.front_default
+//       });
+//       this.setState({ pList: pList });
+//     })
+//     .catch(error => console.log("Pokemon not found!", error));
+// }
