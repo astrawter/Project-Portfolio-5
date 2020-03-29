@@ -20,27 +20,21 @@ class PokeList extends Component {
     this.getList = this.getList.bind(this);
   }
 
-  handleMenu = event => {
-    console.log("Clicked");
-    this.setState({
-      isOpen: true,
-      anchorEl: event.currentTarget
-    });
-  };
-
   handleClose = () => {
     this.setState({
       anchorEl: null,
       isOpen: false
     });
   };
+
   //When clicked anchor menu on target show 4 moves
   handleClick = event => {
-    console.log(this.state);
-    this.setState({
-      anchorEl: event.currentTarget,
-      isOpen: true
-    });
+    event.preventDefault();
+    console.log("Clicked");
+    //this.setState({
+    //   anchorEl: "showMenu",
+    //   isOpen: true
+    // });
   };
 
   componentDidMount() {
@@ -112,10 +106,10 @@ class PokeList extends Component {
                     name={poke.name}
                     img={poke.img}
                     id={poke.id}
-                    onClick={this.handleMenu}
+                    onClick={this.handleClick}
                   />
                   <Menu
-                    anchorEl={this.state.anchorEl}
+                    className={this.state.anchorEl}
                     keepMounted
                     open={this.state.isOpen}
                     onClose={this.handleClose}

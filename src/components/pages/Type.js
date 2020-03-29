@@ -26,7 +26,7 @@ class Type extends Component {
 
   render() {
     return (
-      <Typography style={{ overflow: "scroll" }}>
+      <Typography component="div" style={{ overflow: "scroll" }}>
         <CssBaseline />
         <Nav />
         <Grid container>
