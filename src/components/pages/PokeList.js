@@ -20,9 +20,23 @@ class PokeList extends Component {
     this.getList = this.getList.bind(this);
   }
 
+  handleMenu = event => {
+    console.log("Clicked");
+    this.setState({
+      isOpen: true,
+      anchorEl: event.currentTarget
+    });
+  };
+
+  handleClose = () => {
+    this.setState({
+      anchorEl: null,
+      isOpen: false
+    });
+  };
   //When clicked anchor menu on target show 4 moves
   handleClick = event => {
-    event.preventDefault();
+    console.log(this.state);
     this.setState({
       anchorEl: event.currentTarget,
       isOpen: true
@@ -47,8 +61,6 @@ class PokeList extends Component {
       }
     }
     check.forEach(num => this.getList(num));
-
-    console.log(check);
   }
 
   getList(num) {
@@ -83,30 +95,44 @@ class PokeList extends Component {
         <Container
           maxWidth="xl"
           disableGutters={true}
-          style={{ marginTop: "25px" }}
+          style={{ margin: "2% 8%" }}
         >
           <Typography component="div">
             <Grid container>
               {/*Loop through the list and display each object*/}
               {this.state.pList.map((poke, index) => (
-                <Grid key={poke.id} item xs={6} md={3}>
+                <Grid
+                  key={poke.id}
+                  item
+                  xs={6}
+                  md={3}
+                  style={{ marginBottom: "3%" }}
+                >
                   <Card
                     name={poke.name}
                     img={poke.img}
                     id={poke.id}
-                    handleClick={this.handleClick}
+                    onClick={this.handleMenu}
                   />
-                  <div>
-                    {/*{!this.state.isHidden && (
-                      <Moves anchorEl={this.state.anchorEl} />
-                    )}
-                    <Menu open={false}>
-                      <MenuItem>{poke.moves[0].move.name}</MenuItem>
-                      <MenuItem>{poke.moves[1].move.name}</MenuItem>
-                      <MenuItem>{poke.moves[2].move.name}</MenuItem>
-                      <MenuItem>{poke.moves[3].move.name}</MenuItem>
-                    </Menu>*/}
-                  </div>
+                  <Menu
+                    anchorEl={this.state.anchorEl}
+                    keepMounted
+                    open={this.state.isOpen}
+                    onClose={this.handleClose}
+                  >
+                    <MenuItem onClick={this.handleClose}>
+                      {poke.moves[0].move.name}
+                    </MenuItem>
+                    <MenuItem onClick={this.handleClose}>
+                      {poke.moves[1].move.name}
+                    </MenuItem>
+                    <MenuItem onClick={this.handleClose}>
+                      {poke.moves[2].move.name}
+                    </MenuItem>
+                    <MenuItem onClick={this.handleClose}>
+                      {poke.moves[3].move.name}
+                    </MenuItem>
+                  </Menu>
                 </Grid>
               ))}
             </Grid>

@@ -76,6 +76,7 @@ export default function ButtonAppBar() {
       <AppBar color="default" className={classes.bar} position="static">
         <Toolbar disableGutters={true}>
           <Grid container>
+            {/*hide menu button when large*/}
             <Grid item={true} xs={6} className={classes.hide}>
               <IconButton
                 aria-controls="menu-appbar"
@@ -89,20 +90,12 @@ export default function ButtonAppBar() {
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right"
-                }}
                 keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right"
-                }}
                 open={open}
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>
-                  <NavLink to="/PokeList" className={classes.link}>
+                  <NavLink to="/" className={classes.link}>
                     PokeList
                   </NavLink>
                 </MenuItem>
@@ -113,9 +106,10 @@ export default function ButtonAppBar() {
                 </MenuItem>
               </Menu>
             </Grid>
+            {/*hide text links when small*/}
             <Grid item={true} md={2} xs={1} className={classes.hideSm}>
               <Typography variant="h6" className={classes.navSpace}>
-                <NavLink to="/PokeList" className={classes.nl}>
+                <NavLink to="/" className={classes.nl}>
                   PokeList
                 </NavLink>
               </Typography>
@@ -127,6 +121,7 @@ export default function ButtonAppBar() {
                 </NavLink>
               </Typography>
             </Grid>
+            {/*logo*/}
             <Grid
               item={true}
               md={8}

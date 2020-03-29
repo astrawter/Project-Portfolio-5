@@ -77,7 +77,6 @@ class TypeList extends Component {
                 name={poke.name}
                 img={poke.img}
                 id={poke.id}
-                text="primary"
                 handleClick={this.handleClick}
               />
             </Grid>
