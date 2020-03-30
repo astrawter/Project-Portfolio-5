@@ -6,7 +6,9 @@ import Nav from "../nav/Navigation";
 import Grid from "@material-ui/core/Grid";
 import Card from "../Card";
 import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
 
 class PokeList extends Component {
   //Create an empty array to store the pokemon in
@@ -15,7 +17,8 @@ class PokeList extends Component {
     this.state = {
       anchorEl: null,
       isOpen: false,
-      pList: []
+      pList: [],
+      isShowing: "showing"
     };
     this.getList = this.getList.bind(this);
   }
@@ -23,18 +26,18 @@ class PokeList extends Component {
   handleClose = () => {
     this.setState({
       anchorEl: null,
-      isOpen: false
+      isOpen: false,
+      isShowing: "showing"
     });
   };
 
   //When clicked anchor menu on target show 4 moves
   handleClick = event => {
     event.preventDefault();
-    console.log("Clicked");
+    console.log(event.target.id);
     this.setState({
       anchorEl: event.currentTarget,
-      isOpen: true,
-      show: "showing"
+      isOpen: true
     });
   };
 
@@ -70,15 +73,27 @@ class PokeList extends Component {
       })
       .then(poke => {
         let pList = [...this.state.pList];
+        //Push 4 moves to array
+        let x = 0;
+        let moves = [];
+        moves.forEach(move => {
+          console.log(move);
+          if (!(x >= 4)) {
+            moves.push(move.move.name);
+          }
+          x = x + 1;
+        });
         //add the id, name, and img to the list as an object
         pList.push({
           id: poke.id,
           name: poke.name,
           img: poke.sprites.front_default,
-          moves: poke.moves
+          moves: moves
         });
         this.setState({ pList: pList });
+        console.log(this.state.moves);
       })
+
       .catch(error => console.log("Pokemon not found!", error));
   }
 
@@ -105,26 +120,29 @@ class PokeList extends Component {
                   onClick={this.handleClick}
                 >
                   <Card name={poke.name} img={poke.img} id={poke.id} />
+                  <div id={poke.id} className={this.state.isShowing}>
+                    <List>
+                      <ListItem>
+                        <ListItemText primary={poke.moves[0]} />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemText primary={poke.moves[1] || "???"} />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemText primary={poke.moves[2] || "???"} />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemText primary={poke.moves[3] || "???"} />
+                      </ListItem>
+                    </List>
+                  </div>
                   <Menu
                     anchorEl={this.state.anchorEl}
                     className={this.state.show}
                     keepMounted
                     open={this.state.isOpen}
                     onClose={this.handleClose}
-                  >
-                    <MenuItem onClick={this.handleClose}>
-                      {poke.moves[0].move.name}
-                    </MenuItem>
-                    <MenuItem onClick={this.handleClose}>
-                      {poke.moves[1].move.name || "???"}
-                    </MenuItem>
-                    <MenuItem onClick={this.handleClose}>
-                      {poke.moves[2].move.name || "???"}
-                    </MenuItem>
-                    <MenuItem onClick={this.handleClose}>
-                      {poke.moves[3].move.name || "???"}
-                    </MenuItem>
-                  </Menu>
+                  ></Menu>
                 </Grid>
               ))}
             </Grid>

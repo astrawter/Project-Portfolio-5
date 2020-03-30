@@ -44,5 +44,5 @@ a.active {
 }
 
 .showing {
-  display: "block";
+  display: "none";
 }
