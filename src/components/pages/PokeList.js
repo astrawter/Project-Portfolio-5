@@ -5,7 +5,6 @@ import Container from "@material-ui/core/Container";
 import Nav from "../nav/Navigation";
 import Grid from "@material-ui/core/Grid";
 import Card from "../Card";
-import Menu from "@material-ui/core/Menu";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -15,31 +14,10 @@ class PokeList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      anchorEl: null,
-      isOpen: false,
-      pList: [],
-      isShowing: "showing"
+      pList: []
     };
     this.getList = this.getList.bind(this);
   }
-
-  handleClose = () => {
-    this.setState({
-      anchorEl: null,
-      isOpen: false,
-      isShowing: "showing"
-    });
-  };
-
-  //When clicked anchor menu on target show 4 moves
-  handleClick = event => {
-    event.preventDefault();
-    console.log(event.target.id);
-    this.setState({
-      anchorEl: event.currentTarget,
-      isOpen: true
-    });
-  };
 
   componentDidMount() {
     //Add each pokemon from the random numbers to the list
@@ -76,8 +54,7 @@ class PokeList extends Component {
         //Push 4 moves to array
         let x = 0;
         let moves = [];
-        moves.forEach(move => {
-          console.log(move);
+        poke.moves.forEach(move => {
           if (!(x >= 4)) {
             moves.push(move.move.name);
           }
@@ -91,7 +68,6 @@ class PokeList extends Component {
           moves: moves
         });
         this.setState({ pList: pList });
-        console.log(this.state.moves);
       })
 
       .catch(error => console.log("Pokemon not found!", error));
@@ -120,7 +96,7 @@ class PokeList extends Component {
                   onClick={this.handleClick}
                 >
                   <Card name={poke.name} img={poke.img} id={poke.id} />
-                  <div id={poke.id} className={this.state.isShowing}>
+                  <div id={poke.id}>
                     <List>
                       <ListItem>
                         <ListItemText primary={poke.moves[0]} />
@@ -136,13 +112,6 @@ class PokeList extends Component {
                       </ListItem>
                     </List>
                   </div>
-                  <Menu
-                    anchorEl={this.state.anchorEl}
-                    className={this.state.show}
-                    keepMounted
-                    open={this.state.isOpen}
-                    onClose={this.handleClose}
-                  ></Menu>
                 </Grid>
               ))}
             </Grid>

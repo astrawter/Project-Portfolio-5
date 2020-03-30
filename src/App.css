@@ -42,7 +42,3 @@
 a.active {
   border-bottom: 2px solid #f0f0f0;
 }
-
-.showing {
-  display: "none";
-}
