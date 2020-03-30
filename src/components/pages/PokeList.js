@@ -31,10 +31,11 @@ class PokeList extends Component {
   handleClick = event => {
     event.preventDefault();
     console.log("Clicked");
-    //this.setState({
-    //   anchorEl: "showMenu",
-    //   isOpen: true
-    // });
+    this.setState({
+      anchorEl: event.currentTarget,
+      isOpen: true,
+      show: "showing"
+    });
   };
 
   componentDidMount() {
@@ -101,15 +102,12 @@ class PokeList extends Component {
                   xs={6}
                   md={3}
                   style={{ marginBottom: "3%" }}
+                  onClick={this.handleClick}
                 >
-                  <Card
-                    name={poke.name}
-                    img={poke.img}
-                    id={poke.id}
-                    onClick={this.handleClick}
-                  />
+                  <Card name={poke.name} img={poke.img} id={poke.id} />
                   <Menu
-                    className={this.state.anchorEl}
+                    anchorEl={this.state.anchorEl}
+                    className={this.state.show}
                     keepMounted
                     open={this.state.isOpen}
                     onClose={this.handleClose}
@@ -118,13 +116,13 @@ class PokeList extends Component {
                       {poke.moves[0].move.name}
                     </MenuItem>
                     <MenuItem onClick={this.handleClose}>
-                      {poke.moves[1].move.name}
+                      {poke.moves[1].move.name || "???"}
                     </MenuItem>
                     <MenuItem onClick={this.handleClose}>
-                      {poke.moves[2].move.name}
+                      {poke.moves[2].move.name || "???"}
                     </MenuItem>
                     <MenuItem onClick={this.handleClose}>
-                      {poke.moves[3].move.name}
+                      {poke.moves[3].move.name || "???"}
                     </MenuItem>
                   </Menu>
                 </Grid>
